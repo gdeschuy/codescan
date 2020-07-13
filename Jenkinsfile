@@ -43,6 +43,7 @@ node{
     }
 
     stage('Javadoc'){
+        bat mvn javadoc:javadoc;
         step([$class: 'JavadocArchiver', javadocDir: './apidocs', keepAll: 'true']);
     }
 }
