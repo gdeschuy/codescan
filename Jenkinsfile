@@ -21,7 +21,7 @@ node{
         File cpdOutputFile = new File('health-check/cpd.xml');
 
         if(cpdOutput) {
-            println("CPD: duplications found");
+            println("CPD - duplications found: "+cpdOutput);
             cpdOutputFile.write(cpdOutput);
         } else {
             println('*** CPD: No duplications were found');
