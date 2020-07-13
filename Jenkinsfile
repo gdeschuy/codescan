@@ -33,7 +33,7 @@ node{
         publishIssues issues: [pmd];
 
         // Publish CPD results
-        def cpd = scanForIssues tool: cpd(pattern: '**/health-check/cpd.txt')
+        def cpd = scanForIssues tool: cpd(pattern: '**/health-check/cpd.xml')
         publishIssues issues: [cpd]
     }
 }
