@@ -17,9 +17,10 @@ node{
         bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r health-check/pmd.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
         
         // Run copy-paste detector
-        def cpdOutput = bat(returnStdout: true, script: "$CPD_TOOL --minimum-tokens 10 --files $PROJECT_DIR/classes --language apex --encoding UTF-8 --format xml --failOnViolation false");
+        def cpdOutput = bat(returnStdout: true, script: "$CPD_TOOL --minimum-tokens 10 --files $PROJECT_DIR/classes --language apex --encoding UTF-8 --format text --failOnViolation false");
+        cpdOutput = String.valueOf(cpdOutput);
         println('Output: '+cpdOutput);
-        new File('health-check/cpd.xml').write(cpdOutput);
+        new File('health-check/cpd.txt').write(cpdOutput);
     }
 
     stage('Publish Results'){
@@ -28,7 +29,7 @@ node{
         publishIssues issues: [pmd];
 
         // Publish CPD results
-        def cpd = scanForIssues tool: cpd(pattern: '**/health-check/cpd.xml')
+        def cpd = scanForIssues tool: cpd(pattern: '**/health-check/cpd.txt')
         publishIssues issues: [cpd]
     }
 }
