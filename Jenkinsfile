@@ -20,7 +20,7 @@ node{
         def cpdOutput = bat(returnStdout: true, script: "$CPD_TOOL --minimum-tokens 10 --files $PROJECT_DIR/classes --language apex --encoding UTF-8 --format text --failOnViolation false");
         cpdOutput = String.valueOf(cpdOutput);
         println('Output: '+cpdOutput);
-        File file = new File("c:\dev\salesforce\out.txt")
+        File file = new File("c:/dev/salesforce/out.txt")
         file.write "First line\n"
         println("wrote output to file");
     }
