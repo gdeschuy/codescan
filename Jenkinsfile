@@ -2,6 +2,6 @@
 
 node{    
     stage('ApexPMD'){
-        bat "C:/Program Files (x86)/pmd-bin-6.25.0/bin/pmd.bat";
+        bat "C:/dev/pmd-bin-6.25.0/bin/pmd.bat";
     }
 }
