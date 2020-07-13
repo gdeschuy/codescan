@@ -6,7 +6,12 @@ node{
     def PROJECT_DIR='c:/dev/salesforce/demo/force-app/main/default';    
     
     stage('Analyse Code'){
-        bat "mkdir health-check"        
+        def reportFolder = new File('health-check');
+
+        if(!reportFolder.exists()){
+            reportFolder.mkdir();
+        } 
+      
         //bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r health-check/pmd.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
     }
 
