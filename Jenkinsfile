@@ -7,6 +7,6 @@ node{
     def REPORT_DIR='c:/dev/salesforce/demo'
     
     stage('ApexPMD'){
-        bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r $REPORT_DIR/report.xml -f  xml -e UTF-8 -failOnViolation false -no-chache";
+        bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r $REPORT_DIR/report.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
     }
 }
