@@ -11,7 +11,12 @@ node{
         if(!reportFolder.exists()) { reportFolder.mkdir(); }
       
         bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r health-check/pmd.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
-        bat "$CPD_TOOL --minimum-tokens 100 --files $PROJECT_DIR/classes --outputfile health-check/cpd.xml --encoding UTF-8 --format xml --failOnViolation false";
+        
+        File cpdOutput = New File(reportFolder'/cpd.xml');
+        cpdOutput.write(
+            bat "$CPD_TOOL --minimum-tokens 100 --files $PROJECT_DIR/classes --encoding UTF-8 --format xml --failOnViolation false";
+        )
+        
     }
 
     stage('Publish Results'){
