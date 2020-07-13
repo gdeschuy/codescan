@@ -19,8 +19,11 @@ node{
         // Run copy-paste detector
         def cpdOutput = bat "$CPD_TOOL --minimum-tokens 10 --files $PROJECT_DIR/classes --language apex --encoding UTF-8 --format xml --failOnViolation false";
         File cpdOutputFile = new File('health-check/cpd.xml');
+        
         if(cpdOutput) {
             cpdOutputFile.write(cpdOutput);
+        } else {
+            println '*** CPD: No duplications were found'
         }
     }
 
