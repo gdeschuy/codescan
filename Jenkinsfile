@@ -11,7 +11,8 @@ node{
     }
 
     stage('Publish Results'){
-        def pmd = scanForIssues tool: pmdParser(pattern: '**/pmd.xml');
-        publishIssues issues: [pmd];
+        scanForIssues(
+            tool: pmdParser(pattern: '**/pmd.xml')
+        )        
     }
 }
