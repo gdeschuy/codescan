@@ -6,7 +6,12 @@ node{
     def PROJECT_DIR='c:/dev/salesforce/demo/force-app/main/default';
     def REPORT_DIR='c:/dev/salesforce/demo'
     
-    stage('ApexPMD'){
-        bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r $REPORT_DIR/report.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
+    stage('Analyse Code'){
+        bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r $REPORT_DIR/pmd.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
+    }
+
+    stage('Publish Results'){
+        def pmd = scanForIssues tool: pmdParser(pattern: '**/pmd.xml');
+        publishIssues issues: [pmd];
     }
 }
