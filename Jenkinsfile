@@ -43,7 +43,7 @@ node{
     }
 
     stage('Javadoc'){
-        bat mvn javadoc:javadoc;
-        step([$class: 'JavadocArchiver', javadocDir: './apidocs', keepAll: 'true']);
+        // test apex doc
+        //step([$class: 'JavadocArchiver', javadocDir: './apidocs', keepAll: 'true']);
     }
 }
