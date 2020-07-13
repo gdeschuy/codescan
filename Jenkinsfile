@@ -19,7 +19,12 @@ node{
         // Run copy-paste detector
         def cpdOutput = bat "$CPD_TOOL --minimum-tokens 10 --files $PROJECT_DIR/classes --language apex --encoding UTF-8 --format text --failOnViolation false"; 
         if(cpdOutput) {
-            new File(pwd()+"/health-check/cpd.txt").write(cpdOutput);
+            File cpdOutputFile = new File(pwd()+"/health-check/cpd.txt");
+            cpdOutputFile.write(cpdOutput);
+            List lines = cpdOutputFile.readLines()
+            lines.remove(0);
+            lines.remove(1);
+            lines.remove(2);
         } else {
             println("No duplications found");
         }
