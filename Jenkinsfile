@@ -13,7 +13,7 @@ node{
     }
 
     stage('Publish Results'){
-        //def pmd = scanForIssues tool: pmdParser(pattern: '**/health-check/pmd.xml');
-        //publishIssues issues: [pmd];
+        def pmd = scanForIssues tool: pmdParser(pattern: '**/health-check/pmd.xml');
+        publishIssues issues: [pmd];
     }
 }
