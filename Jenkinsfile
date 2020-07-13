@@ -20,7 +20,8 @@ node{
         def cpdOutput = bat(returnStdout: true, script: "$CPD_TOOL --minimum-tokens 10 --files $PROJECT_DIR/classes --language apex --encoding UTF-8 --format text --failOnViolation false");
         cpdOutput = String.valueOf(cpdOutput);
         println('Output: '+cpdOutput);
-        new File('health-check/cpd.txt').write(cpdOutput);
+        new File('health-check/cpd.txt').write('test');
+        println("wrote output to file";)
     }
 
     stage('Publish Results'){
