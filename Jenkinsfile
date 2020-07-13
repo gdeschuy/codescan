@@ -43,8 +43,6 @@ node{
     }
 
     stage('Javadoc'){
-        steps{
-            step([$class: 'JavadocArchiver', javadocDir: '/health-check/apidocs', keepAll: 'true']);
-        }
+        step([$class: 'JavadocArchiver', javadocDir: '/health-check/apidocs', keepAll: 'true']);
     }
 }
