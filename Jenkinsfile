@@ -12,7 +12,7 @@ node{
       
         bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r health-check/pmd.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
         
-        File cpdOutput = New File(reportFolder'/cpd.xml');
+        File cpdOutput = New File(reportFolder+'/cpd.xml');
         cpdOutput.write(
             bat "$CPD_TOOL --minimum-tokens 100 --files $PROJECT_DIR/classes --encoding UTF-8 --format xml --failOnViolation false";
         )
