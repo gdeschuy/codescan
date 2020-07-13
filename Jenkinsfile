@@ -17,8 +17,9 @@ node{
         bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r health-check/pmd.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
         
         // Run copy-paste detector
-        def cpdOutput = bat(returnStdout: true, script: "$CPD_TOOL --minimum-tokens 10 --files $PROJECT_DIR/classes --language apex --encoding UTF-8 --format text --failOnViolation false");
+        def cpdOutput = bat(returnStdout: true, script: "$CPD_TOOL --minimum-tokens 10 --files $PROJECT_DIR/classes --language apex --encoding UTF-8 --format xml --failOnViolation false");
         println('Output: '+cpdOutput);
+        new File('health-check/cpd.xml').write(cpdOutput);
     }
 
     stage('Publish Results'){
