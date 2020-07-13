@@ -11,11 +11,14 @@ node{
         if(!reportFolder.exists()) { reportFolder.mkdir(); }
       
         bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r health-check/pmd.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
-        bat "$CPD_TOOL --minimum-tokens 100 --files $PROJECT_DIR/classes --encoding UTF-8 --format XML";
+        bat "$CPD_TOOL --minimum-tokens 100 --files $PROJECT_DIR/classes --reportfolder health-check/cpd.xml --encoding UTF-8 --format xml";
     }
 
     stage('Publish Results'){
         def pmd = scanForIssues tool: pmdParser(pattern: '**/health-check/pmd.xml');
         publishIssues issues: [pmd];
+
+        def cpd = scanForIssues tool: cpd(pattern: '**/health-check/cpd.xml')
+        publishIssues issues: [cpd]
     }
 }
