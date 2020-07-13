@@ -38,7 +38,13 @@ node{
             println("CPD: No duplications found");
         }
 
-        def cpd = scanForIssues tool: cpd(pattern: '**/health-check/cpd.xml')
-        publishIssues issues: [cpd]
+        def cpd = scanForIssues tool: cpd(pattern: '**/health-check/cpd.xml');
+        publishIssues issues: [cpd];
+    }
+
+    stage('Javadoc'){
+        steps{
+            step([$class: 'JavadocArchiver', javadocDir: '/health-check/apidocs', keepAll: 'true']);
+        }
     }
 }
