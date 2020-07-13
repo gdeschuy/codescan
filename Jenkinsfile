@@ -7,12 +7,9 @@ node{
     
     stage('Analyse Code'){
         File reportFolder = new File('health-check');
-
-        if(!reportFolder.exists()){            
-            reportFolder.mkdir();
-        }
+        if(!reportFolder.exists()) { reportFolder.mkdir(); }
       
-        //bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r health-check/pmd.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
+        bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r health-check/pmd.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
     }
 
     stage('Publish Results'){
