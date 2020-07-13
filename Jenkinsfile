@@ -1,8 +1,7 @@
 #!/usr/bin/env groovy
 
-node{
-    def PMD_TOOL = "C:\\Program Files (x86)\\pmd-bin-6.25.0\\bin\\pmd.bat";
+node{    
     stage('ApexPMD'){
-        bat(script:"$PMD_TOOL");
+        bat "C:\\Program Files (x86)\\pmd-bin-6.25.0\\bin\\pmd.bat";
     }
 }
