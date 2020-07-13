@@ -21,7 +21,7 @@ node{
         cpdOutput = String.valueOf(cpdOutput);
         println('Output: '+cpdOutput);
         new File('health-check/cpd.txt').write('test');
-        println("wrote output to file";)
+        println("wrote output to file");
     }
 
     stage('Publish Results'){
