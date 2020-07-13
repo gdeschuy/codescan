@@ -1,5 +1,14 @@
 #!/usr/bin/env groovy
 
+/**
+* Code scanning build job to be run on Windows machines against Salesforce source code.
+* The Jenkins Warnings Next Generation Plugin should be installed together with PMD and CPD.
+*
+* @author  Glenn Deschuymer
+* @version 1.0
+* @since   13-07-2020
+*/
+
 node{
     def PMD_TOOL='C:/dev/pmd-bin-6.25.0/bin/pmd.bat';
     def CPD_TOOL='C:/dev/pmd-bin-6.25.0/bin/cpd.bat'
@@ -14,15 +23,16 @@ node{
         }
       
         // Run Apex PMD code scan
-        bat "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r health-check/pmd.xml -f  xml -e UTF-8 -failOnViolation false -no-cache";
+        bat(returnStdout: false, script: "$PMD_TOOL -d $PROJECT_DIR -R $APEX_RULESET -r health-check/pmd.xml -f  xml -e UTF-8 -failOnViolation false -no-cache");
         
         // Run copy-paste detector
         def cpdOutput = bat(returnStdout: true, script: "@$CPD_TOOL --minimum-tokens 10 --files $PROJECT_DIR/classes --language apex --encoding UTF-8 --format xml --failOnViolation false");        
+        
         if(cpdOutput) {
             File cpdOutputFile = new File(pwd()+"/health-check/cpd.xml");
             cpdOutputFile.write(cpdOutput);            
         } else {
-            println("No duplications found");
+            println("CPD: No duplications found");
         }
         
     }
