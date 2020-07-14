@@ -45,6 +45,6 @@ node{
 
     stage('Javadoc'){
         bat "java -jar $SF_APEX_DOCS -s $PROJECT_DIR/classes";
-        //step([$class: 'JavadocArchiver', javadocDir: './apidocs', keepAll: 'true']);
+        step([$class: 'JavadocArchiver', javadocDir: './SfApexDocs', keepAll: 'true']);
     }
 }
