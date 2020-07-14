@@ -14,6 +14,7 @@ node{
     def CPD_TOOL='C:/dev/pmd-bin-6.25.0/bin/cpd.bat';
     def APEX_RULESET='rulesets/apex/quickstart.xml';
     def PROJECT_DIR='c:/dev/salesforce/demo/force-app/main/default';
+    def SF_APEX_DOCS = 'c:/dev/SfApexDoc.jar';
 
     stage('Prepare build'){
         File reportFolder = new File('health-check');        
@@ -43,7 +44,7 @@ node{
     }
 
     stage('Javadoc'){
-        // test apex doc
+        bat java -jar $SF_APEX_DOCS -s $PROJECT_DIR'/classes' -t "./apidocs";
         //step([$class: 'JavadocArchiver', javadocDir: './apidocs', keepAll: 'true']);
     }
 }
