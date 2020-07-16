@@ -11,6 +11,7 @@
 
 node{
     // Constants
+    def WORKSPACE=WORKSPACE;
     def PMD_TOOL='C:/dev/pmd-bin-6.25.0/bin/pmd.bat';
     def CPD_TOOL='C:/dev/pmd-bin-6.25.0/bin/cpd.bat';
     def APEX_RULESET='rulesets/apex/quickstart.xml';    
@@ -20,7 +21,7 @@ node{
     def PROJECT_DIR=PROJECT_DIR;
 
     stage('Prepare build'){
-        File reportFolder = new File('health-check');        
+        File reportFolder = new File(WORKSPACE+'/health-check');        
         if(!reportFolder.exists()) { 
             reportFolder.mkdir(); 
         } else{
