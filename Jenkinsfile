@@ -24,8 +24,6 @@ node{
         File reportFolder = new File(WORKSPACE+'/health-check');        
         if(!reportFolder.exists()) { 
             reportFolder.mkdir(); 
-        } else{
-            println("Folder exists");
         }
     }
 
