@@ -20,9 +20,11 @@ node{
     def PROJECT_DIR=PROJECT_DIR;
 
     stage('Prepare build'){
-        File reportFolder = new File('./health-check');        
+        File reportFolder = new File('health-check');        
         if(!reportFolder.exists()) { 
             reportFolder.mkdir(); 
+        } else{
+            println("Folder exists");
         }
     }
 
