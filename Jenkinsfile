@@ -10,12 +10,14 @@
 */
 
 node{
+    // Constants
     def PMD_TOOL='C:/dev/pmd-bin-6.25.0/bin/pmd.bat';
     def CPD_TOOL='C:/dev/pmd-bin-6.25.0/bin/cpd.bat';
     def APEX_RULESET='rulesets/apex/quickstart.xml';    
     def SF_APEX_DOCS = 'c:/dev/sfapexdoc/SfApexDoc.jar';
 
-    def PROJECT_DIR=${env.PROJECT_DIR};
+    // Build parameter
+    def PROJECT_DIR=PROJECT_DIR;
 
     stage('Prepare build'){
         File reportFolder = new File('health-check');        
